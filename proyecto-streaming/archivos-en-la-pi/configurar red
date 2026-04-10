@@ -1,0 +1,14 @@
+El ajuste necesario
+Si tu laptop tiene la IP .3 y apunta a la Pi (.2) como puerta de enlace, la Pi no debe apuntar a la .1 (porque la .1 no existe en tu cable). En conexiones directas, lo mejor es que la Pi no tenga puerta de enlace o apunte a la laptop.
+
+Usa este comando ajustado para la Raspberry Pi:
+
+
+
+# sudo nmcli connection modify eth0 ipv4.addresses 192.168.100.2/24 ipv4.gateway "" ipv4.dns "" ipv4.method manual
+# sudo nmcli connection up eth0
+# sudo nmcli device connect eth0
+
+# sudo nmcli connection modify eth0 connection.autoconnect yes
+# sudo nmcli connection modify eth0 connection.autoconnect-priority 100
+# sudo nmcli connection modify eth0 ipv4.may-fail no
