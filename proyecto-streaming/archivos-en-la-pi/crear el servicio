@@ -1,0 +1,29 @@
+# sudo nano /etc/systemd/system/srt_player.service
+
+[Unit]
+Description=Auto Start SRT Player
+After=graphical.target
+
+[Service]
+# Sustituye 'streaming1' por tu nombre de usuario si es distinto
+User=streaming1
+Environment=DISPLAY=:0
+Environment=XAUTHORITY=/home/streaming1/.Xauthority
+ExecStart=/home/streaming1/start_srt.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical.target
+
+
+
+
+; Activar y Probar
+; Ahora solo falta decirle a la Raspberry Pi que reconozca este nuevo servicio:
+
+; Recargar servicios: sudo systemctl daemon-reload
+
+; Habilitar al arranque: sudo systemctl enable srt_player.service
+
+; Iniciar ahora mismo: sudo systemctl start srt_player.service
